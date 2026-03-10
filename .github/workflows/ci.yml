@@ -1,10 +1,29 @@
-name: testing github workflows
+name: CI - Pipeline Informatif
 
-on:  push
+on:
+  push:
+    
 
-jobs: 
-  init:
-    runs-on: self-hosted
+
+jobs:
+  integration-continue:
+    name: Gestion des variables d’environnement et secrets
+    runs-on: ubuntu-latest
+
+    # Définition des variables d’environnement pour les étapes du pipeline
+    env:
+      STEP1: "Workflow - Initialisation"
+    
+
+
     steps:
-      - run: echo 'hello world'
-      - run: echo $HOSTNAME
+     # using variables d’environnement et secrets pour les étapes du pipeline
+      - name: Étape 1 - Variable workflow
+        run: |
+          echo "Démarrage du pipeline d’intégration continue"
+          echo "STEP1= $STEP1"
+      
+      - name: Étape 2 - Variable Repository
+        run: |
+          echo "Variable d’environnement pour l’étape 2"
+          echo "STEP2= ${{ vars.STEP2 }}" 
